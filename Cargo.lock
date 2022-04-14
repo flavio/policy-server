@@ -191,9 +191,9 @@ checksum = "30696a84d817107fc028e049980e09d5e140e8da8f1caeb17e8e950658a3cea9"
 
 [[package]]
 name = "async-trait"
-version = "0.1.52"
+version = "0.1.53"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "061a7acccaa286c011ddc30970520b98fa40e00c9d644633fb26b5fc63a265e3"
+checksum = "ed6aa3524a2dfcf9fe180c51eae2b58738348d819517ceadf95789c51fff7600"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -314,7 +314,7 @@ checksum = "a4a45a46ab1f2412e53d3a0ade76ffad2025804294569aae387231a0cd6e0899"
 [[package]]
 name = "burrego"
 version = "0.1.2"
-source = "git+https://github.com/kubewarden/policy-evaluator?tag=v0.2.15#a9e9123bf16cd2308a4d20aff13c8446f96d0c96"
+source = "git+https://github.com/kubewarden/policy-evaluator?tag=v0.2.18#0a820a5abe08907f4b6476ee1aa74c7ffd9d3982"
 dependencies = [
  "anyhow",
  "base64",
@@ -1584,8 +1584,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d41f782ddd187a0d8965607679bbd741052106b75330696ce7d7712b13194d88"
 dependencies = [
  "k8s-openapi 0.14.0",
- "kube-client",
- "kube-core",
+ "kube-client 0.68.0",
+ "kube-core 0.68.0",
+]
+
+[[package]]
+name = "kube"
+version = "0.71.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "342744dfeb81fe186b84f485b33f12c6a15d3396987d933b06a566a3db52ca38"
+dependencies = [
+ "k8s-openapi 0.14.0",
+ "kube-client 0.71.0",
+ "kube-core 0.71.0",
 ]
 
 [[package]]
@@ -1607,7 +1618,7 @@ dependencies = [
  "hyper-timeout",
  "jsonpath_lib",
  "k8s-openapi 0.14.0",
- "kube-core",
+ "kube-core 0.68.0",
  "pem",
  "pin-project",
  "rustls",
@@ -1625,10 +1636,62 @@ dependencies = [
 ]
 
 [[package]]
+name = "kube-client"
+version = "0.71.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3f69a504997799340408635d6e351afb8aab2c34ca3165e162f41b3b34a69a79"
+dependencies = [
+ "base64",
+ "bytes",
+ "chrono",
+ "dirs-next",
+ "either",
+ "futures",
+ "http",
+ "http-body",
+ "hyper",
+ "hyper-rustls",
+ "hyper-timeout",
+ "jsonpath_lib",
+ "k8s-openapi 0.14.0",
+ "kube-core 0.71.0",
+ "pem",
+ "pin-project",
+ "rustls",
+ "rustls-pemfile 0.3.0",
+ "secrecy",
+ "serde",
+ "serde_json",
+ "serde_yaml",
+ "thiserror",
+ "tokio",
+ "tokio-util 0.7.0",
+ "tower",
+ "tower-http",
+ "tracing",
+]
+
+[[package]]
 name = "kube-core"
 version = "0.68.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6878656f5e349ef08b0a48d2b1841f1e68c4cf1ef42524feadad2f9a109dd888"
+dependencies = [
+ "chrono",
+ "form_urlencoded",
+ "http",
+ "k8s-openapi 0.14.0",
+ "once_cell",
+ "serde",
+ "serde_json",
+ "thiserror",
+]
+
+[[package]]
+name = "kube-core"
+version = "0.71.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a4a247487699941baaf93438d65b12d4e32450bea849d619d19ed394e8a4a645"
 dependencies = [
  "chrono",
  "form_urlencoded",
@@ -2406,8 +2469,8 @@ dependencies = [
 
 [[package]]
 name = "policy-evaluator"
-version = "0.2.15"
-source = "git+https://github.com/kubewarden/policy-evaluator?tag=v0.2.15#a9e9123bf16cd2308a4d20aff13c8446f96d0c96"
+version = "0.2.18"
+source = "git+https://github.com/kubewarden/policy-evaluator?tag=v0.2.18#0a820a5abe08907f4b6476ee1aa74c7ffd9d3982"
 dependencies = [
  "anyhow",
  "base64",
@@ -2415,10 +2478,10 @@ dependencies = [
  "cached",
  "hyper",
  "json-patch",
- "kube",
+ "kube 0.71.0",
  "kubewarden-policy-sdk",
  "lazy_static",
- "policy-fetcher",
+ "policy-fetcher 0.6.1",
  "serde",
  "serde_json",
  "tokio",
@@ -2426,7 +2489,7 @@ dependencies = [
  "tracing-futures",
  "validator",
  "wapc",
- "wasmparser 0.82.0",
+ "wasmparser 0.84.0",
  "wasmtime-provider",
 ]
 
@@ -2458,6 +2521,34 @@ dependencies = [
 ]
 
 [[package]]
+name = "policy-fetcher"
+version = "0.6.1"
+source = "git+https://github.com/kubewarden/policy-fetcher?tag=v0.6.1#75dfde5f6ecc619147646d55d48ab9ce84e1b5b8"
+dependencies = [
+ "anyhow",
+ "async-std",
+ "async-stream",
+ "async-trait",
+ "base64",
+ "directories",
+ "lazy_static",
+ "oci-distribution",
+ "path-slash",
+ "rayon",
+ "regex",
+ "reqwest",
+ "rustls",
+ "serde",
+ "serde_json",
+ "serde_yaml",
+ "sha2 0.10.2",
+ "sigstore",
+ "tracing",
+ "url 2.2.2",
+ "walkdir",
+]
+
+[[package]]
 name = "policy-server"
 version = "0.2.6-rc1"
 dependencies = [
@@ -2468,14 +2559,14 @@ dependencies = [
  "hyper",
  "itertools",
  "k8s-openapi 0.14.0",
- "kube",
+ "kube 0.68.0",
  "kubewarden-policy-sdk",
  "lazy_static",
  "num_cpus",
  "opentelemetry",
  "opentelemetry-otlp",
  "policy-evaluator",
- "policy-fetcher",
+ "policy-fetcher 0.6.0",
  "rustls",
  "rustls-pemfile 0.3.0",
  "serde",
@@ -2988,9 +3079,9 @@ dependencies = [
 
 [[package]]
 name = "semver"
-version = "1.0.6"
+version = "1.0.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a4a3381e03edd24287172047536f20cabde766e2cd3e65e6b00fb3af51c4f38d"
+checksum = "d65bd28f48be7196d222d95b9243287f48d27aca604e08497513019ff0502cc4"
 
 [[package]]
 name = "serde"
@@ -4054,9 +4145,12 @@ checksum = "98930446519f63d00a836efdc22f67766ceae8dbcc1571379f2bcabc6b2b9abc"
 
 [[package]]
 name = "wasmparser"
-version = "0.82.0"
+version = "0.84.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0559cc0f1779240d6f894933498877ea94f693d84f3ee39c9a9932c6c312bd70"
+checksum = "77dc97c22bb5ce49a47b745bed8812d30206eff5ef3af31424f2c1820c0974b2"
+dependencies = [
+ "indexmap",
+]
 
 [[package]]
 name = "wasmtime"
