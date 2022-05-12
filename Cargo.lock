@@ -329,7 +329,7 @@ checksum = "a4a45a46ab1f2412e53d3a0ade76ffad2025804294569aae387231a0cd6e0899"
 [[package]]
 name = "burrego"
 version = "0.1.2"
-source = "git+https://github.com/kubewarden/policy-evaluator?tag=v0.3.0#6bf71a56cf8db521c0fecc61b6fcde1ab99d5e1c"
+source = "git+https://github.com/kubewarden/policy-evaluator?tag=v0.3.1#d0e2b3bfe77cd2953fcc88b8677dd30061f964e3"
 dependencies = [
  "anyhow",
  "base64",
@@ -1730,8 +1730,9 @@ dependencies = [
 
 [[package]]
 name = "kubewarden-policy-sdk"
-version = "0.4.0"
-source = "git+https://github.com/kubewarden/policy-sdk-rust?tag=v0.4.0#5a000314ebcc6398f759968bf2822103f08c6dc5"
+version = "0.4.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d6ed4b76c64427aee2e7d9fb1f4f110c1531722ce43694a8ea82950d57a3eb88"
 dependencies = [
  "anyhow",
  "k8s-openapi 0.14.0",
@@ -2593,8 +2594,8 @@ dependencies = [
 
 [[package]]
 name = "policy-evaluator"
-version = "0.3.0"
-source = "git+https://github.com/kubewarden/policy-evaluator?tag=v0.3.0#6bf71a56cf8db521c0fecc61b6fcde1ab99d5e1c"
+version = "0.3.1"
+source = "git+https://github.com/kubewarden/policy-evaluator?tag=v0.3.1#d0e2b3bfe77cd2953fcc88b8677dd30061f964e3"
 dependencies = [
  "anyhow",
  "base64",
@@ -2603,7 +2604,7 @@ dependencies = [
  "hyper",
  "json-patch",
  "kube",
- "kubewarden-policy-sdk 0.3.2",
+ "kubewarden-policy-sdk 0.4.2",
  "lazy_static",
  "policy-fetcher",
  "serde",
@@ -2619,8 +2620,8 @@ dependencies = [
 
 [[package]]
 name = "policy-fetcher"
-version = "0.7.0"
-source = "git+https://github.com/kubewarden/policy-fetcher?tag=v0.7.0#97178fca6c93316909f367570d9267f1a92c88e6"
+version = "0.7.3"
+source = "git+https://github.com/kubewarden/policy-fetcher?tag=v0.7.3#fb20a708d1bcd4d628dd204610b3ba4f70db2f73"
 dependencies = [
  "anyhow",
  "async-std",
@@ -2628,7 +2629,6 @@ dependencies = [
  "async-trait",
  "base64",
  "directories",
- "kubewarden-policy-sdk 0.4.0",
  "lazy_static",
  "oci-distribution",
  "path-slash",
@@ -3176,9 +3176,9 @@ dependencies = [
 
 [[package]]
 name = "semver"
-version = "1.0.7"
+version = "1.0.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d65bd28f48be7196d222d95b9243287f48d27aca604e08497513019ff0502cc4"
+checksum = "8cb243bdfdb5936c8dc3c45762a19d12ab4550cdc753bc247637d4ec35a040fd"
 
 [[package]]
 name = "serde"
@@ -3231,9 +3231,9 @@ dependencies = [
 
 [[package]]
 name = "serde_json"
-version = "1.0.79"
+version = "1.0.81"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8e8d9fa5c3b304765ce1fd9c4c8a3de2c8db365a5b91be52f186efc675681d95"
+checksum = "9b7ce2b32a1aed03c558dc61a5cd328f15aff2dbc17daad8fb8af04d2100e15c"
 dependencies = [
  "indexmap",
  "itoa",
@@ -3273,9 +3273,9 @@ dependencies = [
 
 [[package]]
 name = "serde_yaml"
-version = "0.8.23"
+version = "0.8.24"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a4a521f2940385c165a24ee286aa8599633d162077a54bdcae2a6fd5a7bfa7a0"
+checksum = "707d15895415db6628332b737c838b88c598522e4dc70647e59b72312924aebc"
 dependencies = [
  "indexmap",
  "ryu",
