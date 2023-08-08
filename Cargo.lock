@@ -359,6 +359,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "bit_field"
+version = "0.10.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dc827186963e592360843fb5ba4b973e145841266c1357f7180c43526f2e5b61"
+
+[[package]]
 name = "bitflags"
 version = "1.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -431,7 +437,7 @@ checksum = "a3e2c3daef883ecc1b5d58c15adae93470a91d425f3532ba1695849656af3fc1"
 [[package]]
 name = "burrego"
 version = "0.3.4"
-source = "git+https://github.com/kubewarden/policy-evaluator?tag=v0.11.1#ed6417c38bee88a2fd89852fe186055b4284b863"
+source = "git+https://github.com/kubewarden/policy-evaluator?tag=v0.11.3#bf96c0f01731fafbc94933e82107cbd76a1027ad"
 dependencies = [
  "base64 0.21.2",
  "chrono",
@@ -1127,9 +1133,9 @@ dependencies = [
 
 [[package]]
 name = "deranged"
-version = "0.3.6"
+version = "0.3.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8810e7e2cf385b1e9b50d68264908ec367ba642c96d02edfe61c39e88e2a3c01"
+checksum = "7684a49fb1af197853ef7b2ee694bc1f5b4179556f1e5710e1760c5db6f5e929"
 dependencies = [
  "serde",
 ]
@@ -1181,16 +1187,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ca3aa72a6f96ea37bbc5aa912f6788242832f75369bdfdadcb0e38423f100059"
 dependencies = [
  "dirs-sys 0.3.7",
-]
-
-[[package]]
-name = "dirs-next"
-version = "2.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b98cf8ebf19c3d1b223e151f99a4f9f0690dca41414773390fc824184ac833e1"
-dependencies = [
- "cfg-if",
- "dirs-sys-next",
 ]
 
 [[package]]
@@ -2270,6 +2266,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "k8s-openapi"
+version = "0.19.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "95578de7d6eac4fba42114bc751e38c59a739968769df1be56feba6f17fd148e"
+dependencies = [
+ "base64 0.21.2",
+ "bytes",
+ "chrono",
+ "serde",
+ "serde-value",
+ "serde_json",
+]
+
+[[package]]
 name = "keccak"
 version = "0.1.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2280,34 +2290,34 @@ dependencies = [
 
 [[package]]
 name = "kube"
-version = "0.84.0"
+version = "0.85.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "14bd236a6f6ddeac3fefa2863eb4e363cb3a2c49d66619e181b5b8f8f0787575"
+checksum = "a189cb8721a47de68d883040713bbb9c956763d784fcf066828018d32c180b96"
 dependencies = [
- "k8s-openapi",
+ "k8s-openapi 0.19.0",
  "kube-client",
  "kube-core",
 ]
 
 [[package]]
 name = "kube-client"
-version = "0.84.0"
+version = "0.85.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "04a28620131ca89b2509e52f5e1b71bfa3e61a50321836b2ae373bc18e0309e6"
+checksum = "98989b6e1f27695afe22aa29c94136fa06be5e8d28b91222e6dfbe5a460c803f"
 dependencies = [
  "base64 0.20.0",
  "bytes",
  "chrono",
- "dirs-next",
  "either",
  "futures",
+ "home",
  "http",
  "http-body",
  "hyper",
  "hyper-rustls",
  "hyper-timeout",
  "jsonpath_lib",
- "k8s-openapi",
+ "k8s-openapi 0.19.0",
  "kube-core",
  "pem 1.1.1",
  "pin-project",
@@ -2327,14 +2337,14 @@ dependencies = [
 
 [[package]]
 name = "kube-core"
-version = "0.84.0"
+version = "0.85.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8227a989f1eeee3bcbf045165d6aca462af3744ecd4dfdcfba81051fb7de428e"
+checksum = "c24d23bf764ec9a5652f943442ff062b91fd52318ea6d2fc11115f19d8c84d13"
 dependencies = [
  "chrono",
  "form_urlencoded",
  "http",
- "k8s-openapi",
+ "k8s-openapi 0.19.0",
  "once_cell",
  "serde",
  "serde_json",
@@ -2343,14 +2353,14 @@ dependencies = [
 
 [[package]]
 name = "kubewarden-policy-sdk"
-version = "0.9.6"
+version = "0.9.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "845b954c96cafeeb0ead2c558a0d1d961a514552740e660fb16a0750d7fc9497"
+checksum = "fb4fdd3b3a463c5efeed9a263ed6ba66173f34906527448837845d05365a45e3"
 dependencies = [
  "anyhow",
  "cfg-if",
  "chrono",
- "k8s-openapi",
+ "k8s-openapi 0.19.0",
  "num",
  "num-derive",
  "num-traits",
@@ -3125,9 +3135,9 @@ dependencies = [
 
 [[package]]
 name = "picky"
-version = "7.0.0-rc.6"
+version = "7.0.0-rc.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b9a88c21b32a9e6a2c29a2f6cd5a3cd474798c2c3e92051df9311d3829c521e6"
+checksum = "cfbf0740cad569c1d113042305d0a8337e2e8ecaee643a924eb782417e08f6f1"
 dependencies = [
  "base64 0.21.2",
  "chrono",
@@ -3148,6 +3158,7 @@ dependencies = [
  "sha2 0.10.7",
  "sha3",
  "thiserror",
+ "ucs2",
  "x25519-dalek",
  "zeroize",
 ]
@@ -3178,9 +3189,9 @@ dependencies = [
 
 [[package]]
 name = "picky-asn1-x509"
-version = "0.10.0"
+version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f58b01e70288cc4dbccf478487780dff953d5ec6ae8d7e0d659c1e78a4184ab3"
+checksum = "25c2718a5fe2b6c4b651bad5514699182f01db1b2f256fd6ab237f5879a01a4a"
 dependencies = [
  "base64 0.21.2",
  "num-bigint-dig",
@@ -3297,8 +3308,8 @@ checksum = "e3d7ddaed09e0eb771a79ab0fd64609ba0afb0a8366421957936ad14cbd13630"
 
 [[package]]
 name = "policy-evaluator"
-version = "0.11.1"
-source = "git+https://github.com/kubewarden/policy-evaluator?tag=v0.11.1#ed6417c38bee88a2fd89852fe186055b4284b863"
+version = "0.11.3"
+source = "git+https://github.com/kubewarden/policy-evaluator?tag=v0.11.3#bf96c0f01731fafbc94933e82107cbd76a1027ad"
 dependencies = [
  "anyhow",
  "base64 0.21.2",
@@ -3309,7 +3320,7 @@ dependencies = [
  "email_address",
  "itertools 0.11.0",
  "json-patch",
- "k8s-openapi",
+ "k8s-openapi 0.19.0",
  "kube",
  "kubewarden-policy-sdk",
  "lazy_static",
@@ -3322,7 +3333,7 @@ dependencies = [
  "serde_yaml",
  "sha2 0.10.7",
  "thiserror",
- "time 0.3.24",
+ "time 0.3.25",
  "tokio",
  "tracing",
  "tracing-futures",
@@ -3376,7 +3387,7 @@ dependencies = [
  "daemonize",
  "humansize",
  "itertools 0.11.0",
- "k8s-openapi",
+ "k8s-openapi 0.18.0",
  "lazy_static",
  "num_cpus",
  "opentelemetry",
@@ -4236,7 +4247,7 @@ dependencies = [
  "serde",
  "serde_json",
  "serde_with_macros",
- "time 0.3.24",
+ "time 0.3.25",
 ]
 
 [[package]]
@@ -4651,9 +4662,9 @@ dependencies = [
 
 [[package]]
 name = "time"
-version = "0.3.24"
+version = "0.3.25"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b79eabcd964882a646b3584543ccabeae7869e9ac32a46f6f22b7a5bd405308b"
+checksum = "b0fdd63d58b18d663fbdf70e049f00a22c8e42be082203be7f26589213cd75ea"
 dependencies = [
  "deranged",
  "itoa",
@@ -5046,6 +5057,15 @@ name = "typenum"
 version = "1.16.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "497961ef93d974e23eb6f433eb5fe1b7930b659f06d12dec6fc44a8f554c0bba"
+
+[[package]]
+name = "ucs2"
+version = "0.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bad643914094137d475641b6bab89462505316ec2ce70907ad20102d28a79ab8"
+dependencies = [
+ "bit_field",
+]
 
 [[package]]
 name = "unicase"
