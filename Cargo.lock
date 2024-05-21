@@ -1445,6 +1445,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cdeb3aa5e95cf9aabc17f060cfa0ced7b83f042390760ca53bf09df9968acaa1"
 
 [[package]]
+name = "flate2"
+version = "1.0.30"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5f54427cfd1c7829e2a139fcefea601bf088ebca651d2bf53ebc600eac295dae"
+dependencies = [
+ "crc32fast",
+ "miniz_oxide",
+]
+
+[[package]]
 name = "fnv"
 version = "1.0.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2127,6 +2137,15 @@ checksum = "f8478577c03552c21db0e2724ffb8986a5ce7af88107e6be5d2ee6e158c12800"
 
 [[package]]
 name = "itertools"
+version = "0.10.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b0fd2260e829bddf4cb6ea802289de2f86d6a7a690192fbe91b3f46e0f2c8473"
+dependencies = [
+ "either",
+]
+
+[[package]]
+name = "itertools"
 version = "0.12.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ba291022dbbd398a455acf126c1e341954079855bc60dfdda641363bd6922569"
@@ -2167,6 +2186,25 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "52f5385394064fa2c886205dba02598013ce83d3e92d33dbdc0c52fe0e7bf4fc"
 dependencies = [
  "cc",
+]
+
+[[package]]
+name = "jemalloc_pprof"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "45b38a2cc3eb7b0e332c6368a6fd6a1a603a5be9526f0810f8e0682513538541"
+dependencies = [
+ "anyhow",
+ "flate2",
+ "libc",
+ "num",
+ "once_cell",
+ "paste",
+ "prost 0.11.9",
+ "tempfile",
+ "tikv-jemalloc-ctl",
+ "tokio",
+ "tracing",
 ]
 
 [[package]]
@@ -3012,7 +3050,7 @@ dependencies = [
  "opentelemetry-proto",
  "opentelemetry-semantic-conventions",
  "opentelemetry_sdk",
- "prost",
+ "prost 0.12.4",
  "thiserror",
  "tokio",
  "tonic",
@@ -3026,7 +3064,7 @@ checksum = "3a8fddc9b68f5b80dae9d6f510b88e02396f006ad48cac349411fbecc80caae4"
 dependencies = [
  "opentelemetry",
  "opentelemetry_sdk",
- "prost",
+ "prost 0.12.4",
  "tonic",
 ]
 
@@ -3529,6 +3567,7 @@ dependencies = [
  "futures",
  "http-body-util",
  "itertools 0.13.0",
+ "jemalloc_pprof",
  "k8s-openapi",
  "lazy_static",
  "mime",
@@ -3551,6 +3590,7 @@ dependencies = [
  "sha2",
  "tempfile",
  "thiserror",
+ "tikv-jemalloc-ctl",
  "tikv-jemallocator",
  "tokio",
  "tower",
@@ -3591,9 +3631,9 @@ dependencies = [
  "nix",
  "once_cell",
  "parking_lot",
- "prost",
+ "prost 0.12.4",
  "prost-build",
- "prost-derive",
+ "prost-derive 0.12.4",
  "sha2",
  "smallvec",
  "symbolic-demangle",
@@ -3687,12 +3727,22 @@ dependencies = [
 
 [[package]]
 name = "prost"
+version = "0.11.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0b82eaa1d779e9a4bc1c3217db8ffbeabaae1dca241bf70183242128d48681cd"
+dependencies = [
+ "bytes",
+ "prost-derive 0.11.9",
+]
+
+[[package]]
+name = "prost"
 version = "0.12.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d0f5d036824e4761737860779c906171497f6d55681139d8312388f8fe398922"
 dependencies = [
  "bytes",
- "prost-derive",
+ "prost-derive 0.12.4",
 ]
 
 [[package]]
@@ -3709,11 +3759,24 @@ dependencies = [
  "once_cell",
  "petgraph",
  "prettyplease",
- "prost",
+ "prost 0.12.4",
  "prost-types",
  "regex",
  "syn 2.0.60",
  "tempfile",
+]
+
+[[package]]
+name = "prost-derive"
+version = "0.11.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e5d2d8d10f3c6ded6da8b05b5fb3b8a5082514344d56c9f871412d29b4e075b4"
+dependencies = [
+ "anyhow",
+ "itertools 0.10.5",
+ "proc-macro2",
+ "quote",
+ "syn 1.0.109",
 ]
 
 [[package]]
@@ -3735,7 +3798,7 @@ version = "0.12.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3235c33eb02c1f1e212abdbe34c78b264b038fb58ca612664343271e36e55ffe"
 dependencies = [
- "prost",
+ "prost 0.12.4",
 ]
 
 [[package]]
@@ -4852,6 +4915,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "tikv-jemalloc-ctl"
+version = "0.5.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "619bfed27d807b54f7f776b9430d4f8060e66ee138a28632ca898584d462c31c"
+dependencies = [
+ "libc",
+ "paste",
+ "tikv-jemalloc-sys",
+]
+
+[[package]]
 name = "tikv-jemalloc-sys"
 version = "0.5.4+5.3.0-patched"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5087,7 +5161,7 @@ dependencies = [
  "hyper-timeout 0.4.1",
  "percent-encoding",
  "pin-project",
- "prost",
+ "prost 0.12.4",
  "tokio",
  "tokio-stream",
  "tower",

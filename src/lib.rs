@@ -38,7 +38,8 @@ use tokio::{
 use tower_http::trace::{self, TraceLayer};
 
 use crate::api::handlers::{
-    audit_handler, pprof_get_cpu, readiness_handler, validate_handler, validate_raw_handler,
+    audit_handler, pprof_get_cpu, pprof_get_heap, readiness_handler, validate_handler,
+    validate_raw_handler,
 };
 use crate::api::state::ApiServerState;
 use crate::evaluation::{
@@ -211,7 +212,9 @@ impl PolicyServer {
                     .on_response(trace::DefaultOnResponse::new().level(Level::INFO)),
             );
         if config.enable_pprof {
-            let pprof_router = Router::new().route("/debug/pprof/cpu", get(pprof_get_cpu));
+            let pprof_router = Router::new()
+                .route("/debug/pprof/cpu", get(pprof_get_cpu))
+                .route("/debug/pprof/heap", get(pprof_get_heap));
             router = Router::new().merge(router).merge(pprof_router);
         }
 

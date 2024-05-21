@@ -29,6 +29,14 @@ pub enum ReportGenerationError {
 
     #[error("cannot encode report to pprof format: {0}")]
     EncodeError(String),
+
+    #[error("failed to dump the profile: {0}")]
+    JemallocError(String),
+
+    #[error("error enabling jemalloc profiling: {0}")]
+    HeapProfilingActivationError(#[from] tikv_jemalloc_ctl::Error),
+    #[error("cannot get jemalloc control handle")]
+    CannotGetJemallocControlHandle,
 }
 
 /// Default frequency of sampling. 99Hz to avoid coincide with special periods
